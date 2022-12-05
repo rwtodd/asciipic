@@ -24,8 +24,8 @@ class App {
         var image = ImageIO.read(new File(fname))
         var scaledHeight = (int) ((scaledWidth / aspectRatio / image.width) * image.height)
 
-        while (scaledWidth < image.width / 2) {
-            image = scaleImage(image, (int) (image.width / 2), (int) (image.height / 2))
+        while (scaledWidth < image.width.intdiv(2)) {
+            image = scaleImage(image, image.width.intdiv(2), image.height.intdiv(2))
         }
 
         scaleImage(image, scaledWidth, scaledHeight)
@@ -73,7 +73,7 @@ class App {
                 fpath.process('fname', extras[0])
             }
             if(rev.value) {
-                char[] tmp = new char[chars.length];
+                char[] tmp = new char[chars.length]
                 chars.eachWithIndex{ char ch, int i -> tmp[chars.length - i - 1] = ch }
                 chars = tmp
             }
