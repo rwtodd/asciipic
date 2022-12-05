@@ -58,11 +58,10 @@ class App {
         System.exit(1)
     }
 
-    @groovy.transform.CompileDynamic
     static void main(String[] args) {
         final var fpath = new ExistingFileParam(['fname', 'f'], '<File Name>the image to convert')
-        final var width = new ClampedParam(new IntParam(['width', 'w'], 72, 'the width of the output (default 72)'), 1, 500)
-        final var ar = new ClampedParam(new DoubleParam(['aspect', 'a'], 1.5d, 'the aspect ratio of the output font (default 1.5)'), 0.1d, 5.0d)
+        final var width = new ClampedParam<Integer>(new IntParam(['width', 'w'], 72, 'the width of the output (default 72)'), 1, 500)
+        final var ar = new ClampedParam<Double>(new DoubleParam(['aspect', 'a'], 1.5d, 'the aspect ratio of the output font (default 1.5)'), 0.1d, 5.0d)
         final var rev = new FlagParam(['invert'],'invert the brightness scale (helps with some image-terminal combinations')
         final var help = new FlagParam(['help'], 'print this help text')
         Parser p = [fpath, width, ar, rev, help]
