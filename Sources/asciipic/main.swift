@@ -34,8 +34,8 @@ private func brightness(rgba: Int32) -> Double {
     let r  = Double(rgba & 0xff) * 0.2126,
         g  = Double((rgba & 0xff00) >> 8) * 0.7152,
         b  = Double((rgba & 0xff0000) >> 16) * 0.0722
-    let total = r + g + b
-    return invert.value ? min(256.0 - total,255.0) : total
+    let total = min(r + g + b, 255.0)
+    return invert.value ? 255.0 - total : total
 }
 
 let asciiTable : [Character] = [ "#", "A", "@", "%", "$", "+", "=", "*", ":", ",", ".", " " ]
@@ -58,6 +58,7 @@ guard let colorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear),
 
 // Wrap graphics context
 let gctx = NSGraphicsContext(cgContext: ctx, flipped: false)
+gctx.imageInterpolation = .high;
 
 // Make our bitmap context current and render the NSImage into it
 NSGraphicsContext.current = gctx
