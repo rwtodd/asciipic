@@ -67,11 +67,10 @@ class App {
         Parser p = [fpath, width, ar, rev, help]
         try {
             var extras = p.parse(args)
-            if(help.value) { usage(p) }
-
             if (fpath.value == null && extras.size() == 1) {
                 fpath.process('fname', extras[0])
             }
+            if(help.value || fpath.value == null) { usage(p) }
             if(rev.value) {
                 char[] tmp = new char[chars.length]
                 chars.eachWithIndex{ char ch, int i -> tmp[chars.length - i - 1] = ch }
