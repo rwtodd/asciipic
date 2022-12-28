@@ -1,7 +1,8 @@
 # asciipic
 
-A macOS utility for generating ASCII versions of image files.  This was a fun project to
-learn a little about `NSImage`/`CGImage`.
+A utility for generating ASCII versions of image files.  
+
+This was a fun swift project to learn a little about `NSImage`/`CGImage` on macos, but then I reimplemented it in Java.  The swift version is also in this repo.
 
 I've made other versions of this program in scala and go, I think.  They live somewhere on my github account (most likely in the `small_programs` repos).
 

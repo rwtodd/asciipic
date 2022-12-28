@@ -1,13 +1,10 @@
 plugins {
-    // Apply the groovy Plugin to add support for Groovy.
-    id 'groovy'
-
-    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
 }
 
 sourceSets {
-  main.groovy.srcDirs = ['src']
+  main.java.srcDirs = ['src']
 }
 
 repositories {
@@ -16,19 +13,18 @@ repositories {
 }
 
 dependencies {
-    // Use the latest Groovy version for building this library
-    implementation 'org.apache.groovy:groovy:4.0.7'
-    implementation 'org.rwtodd:org.rwtodd.args:2.0.0'
+    implementation 'org.rwtodd:org.rwtodd.args:2.0.1'
 }
 
 application {
     // Define the main class for the application.
+    mainModule = 'asciipic'
     mainClass = 'asciipic.App'
 }
 
-// print out the runtime classpath to help run manually...
-task rcp {
+// print out a command to run the program
+task rcl {
     doLast {
-        println(sourceSets.main.runtimeClasspath.asPath)
+        println("java -p '${sourceSets.main.runtimeClasspath.asPath}' -m asciipic")
     }
 }
